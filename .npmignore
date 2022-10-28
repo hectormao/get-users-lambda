@@ -2,3 +2,7 @@ node_modules/
 **/test/
 src/
 **main**
+.nyc_output/
+.nyc_coverage/
+.nycrc.json
+tsconfig.json

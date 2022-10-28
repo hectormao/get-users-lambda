@@ -12,6 +12,7 @@ import getContainer from "./inversify/inversify.config";
 import TYPES from "./inversify/types";
 import { UsuarioService } from "./service/usuario.service";
 import { User } from "./types/types";
+import jwt_decode from "jwt-decode";
 
 let containerPromise: Promise<Container>;
 
@@ -20,6 +21,18 @@ export const handler: APIGatewayProxyHandler = async (
   context: Context
 ): Promise<APIGatewayProxyResult> => {
   console.log("Request Event ...", event);
+
+  const token =
+    (event.headers["Authorization"] || "").match(/Bearer (.*)/) || [];
+
+  console.log("Token ... ", token);
+
+  if (token && token[1]) {
+    const decodedJwt: any = jwt_decode(token[1]);
+    console.log("User who call me ... ", decodedJwt.email);
+  } else {
+    console.log("No User ");
+  }
 
   if (containerPromise == null) {
     containerPromise = getContainer();

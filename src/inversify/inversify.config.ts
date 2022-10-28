@@ -9,8 +9,14 @@ import { GetSecretValueResponse } from "aws-sdk/clients/secretsmanager";
 
 const getContainer = async () => {
   const container: Container = new Container();
-  container.bind<UsuarioRepository>(TYPES.Repository).to(UsuarioRepository);
-  container.bind<UsuarioService>(TYPES.Service).to(UsuarioService);
+  container
+    .bind<UsuarioRepository>(TYPES.Repository)
+    .to(UsuarioRepository)
+    .inRequestScope();
+  container
+    .bind<UsuarioService>(TYPES.Service)
+    .to(UsuarioService)
+    .inSingletonScope();
 
   const secret: SecretsManager = new SecretsManager({
     region: process.env.AWS_REGION || "us-east-1",

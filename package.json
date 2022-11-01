@@ -10,7 +10,10 @@
     "test": "npm run test:unit",
     "pack": "npm run clean && npm run build && npx npm-pack-zip",
     "test:unit": "npx ts-mocha --exit -p tsconfig.json './test/unit/**/*unit.spec.ts'",
-    "test:coverage": "nyc npm run test:unit"
+    "test:coverage": "nyc npm run test:unit",
+    "tf:plan": "npm run pack && cd terraform && terraform plan -var-file tfvars/dev.tfvars",
+    "tf:apply": "npm run pack && cd terraform && terraform apply -auto-approve -var-file tfvars/dev.tfvars",
+    "tf:destroy": "cd terraform && terraform destroy -var-file tfvars/dev.tfvars"
   },
   "author": "hectormao.gonzalez@gmail.com",
   "license": "ISC",

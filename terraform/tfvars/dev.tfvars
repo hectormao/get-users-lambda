@@ -1,0 +1,6 @@
+region         = "us-east-1"
+env            = "dev"
+app_name       = "get-users-lambda"
+db_name        = "listado_usuarios"
+secret_name    = "cursolambda"
+lambda_package = "../get-users-lambda.zip"

@@ -6,3 +6,4 @@ src/
 .nyc_coverage/
 .nycrc.json
 tsconfig.json
+terraform/
